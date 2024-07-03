@@ -14,7 +14,7 @@ from tqdm import tqdm, trange
 from transformers import get_linear_schedule_with_warmup, AdamW, AutoModelForSequenceClassification, Trainer, \
     TrainingArguments, AutoTokenizer
 
-from ensemble_models import SimplifiedStacking, SimplifiedWeightedBoost, WeightedEnsemble
+from Ensemble_models import SimplifiedStacking, SimplifiedWeightedBoost, WeightedEnsemble
 from data import Dataset, SimpleDataset, load_data, load_pretrained_embeddings, build_tokenizer_for_word_embeddings, \
     prepare_data_custom_tokenizer, prepare_data
 from models import MLP, collate_for_mlp, LSTM, collate_for_lstm
@@ -88,7 +88,7 @@ def train_transformer(model, dataset, output_dir, training_batch_size, eval_batc
                                           per_device_train_batch_size=training_batch_size,
                                           per_device_eval_batch_size=eval_batch_size,
                                           weight_decay=weight_decay,
-                                          evaluation_strategy="epoch",
+                                          eval_strategy="epoch",
                                           disable_tqdm=disable_tqdm,
                                           logging_steps=logging_steps,
                                           log_level="error",
@@ -101,7 +101,7 @@ def train_transformer(model, dataset, output_dir, training_batch_size, eval_batc
                                           per_device_train_batch_size=training_batch_size,
                                           per_device_eval_batch_size=eval_batch_size,
                                           weight_decay=weight_decay,
-                                          evaluation_strategy="epoch",
+                                          eval_strategy="epoch",
                                           disable_tqdm=disable_tqdm,
                                           logging_steps=logging_steps,
                                           log_level="error",
